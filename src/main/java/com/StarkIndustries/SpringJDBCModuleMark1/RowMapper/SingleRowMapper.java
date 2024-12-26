@@ -2,7 +2,9 @@ package com.StarkIndustries.SpringJDBCModuleMark1.RowMapper;
 
 import com.StarkIndustries.SpringJDBCModuleMark1.Model.Customer;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -15,6 +17,7 @@ public class SingleRowMapper implements RowMapper<Customer> {
         customer.setCustomerAge(resultSet.getInt("CustomerAge"));
         customer.setCustomerContact(resultSet.getString("CustomerContact"));
         customer.setCustomerNationality(resultSet.getString("CustomerNationality"));
+
         return customer;
     }
 }

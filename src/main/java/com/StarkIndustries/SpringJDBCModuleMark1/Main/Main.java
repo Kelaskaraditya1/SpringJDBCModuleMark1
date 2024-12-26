@@ -1,7 +1,9 @@
 package com.StarkIndustries.SpringJDBCModuleMark1.Main;
 
+import com.StarkIndustries.SpringJDBCModuleMark1.Configurations.JdbcConfiguration;
 import com.StarkIndustries.SpringJDBCModuleMark1.DataAcessObject.DataAcessObject;
 import com.StarkIndustries.SpringJDBCModuleMark1.Model.Customer;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,8 +16,11 @@ public class Main {
 
         Scanner s = new Scanner(System.in);
 
-        var conetxt = new ClassPathXmlApplicationContext("com/StarkIndustries/SpringJDBCModuleMark1/Configurations/JdbcConfiguration.xml");
-        DataAcessObject dataAcessObject =(DataAcessObject) conetxt.getBean(DataAcessObject.class);
+//        var conetxt = new ClassPathXmlApplicationContext("com/StarkIndustries/SpringJDBCModuleMark1/Configurations/JdbcConfiguration.xml");
+//        DataAcessObject dataAcessObject =(DataAcessObject) conetxt.getBean(DataAcessObject.class);
+
+        var context = new AnnotationConfigApplicationContext(JdbcConfiguration.class);
+        DataAcessObject dataAcessObject = context.getBean(DataAcessObject.class);
 
         // Insert Query:
 

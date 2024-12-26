@@ -35,15 +35,11 @@ public class DataAcessObject implements EntityDao {
 
     // Using XMl Configurations
 
-    public JdbcTemplate getJdbcTemplate(){
-         var context = new ClassPathXmlApplicationContext("com/StarkIndustries/SpringJDBCModuleMark1/Configurations/JdbcConfiguration.xml");
-         return context.getBean(JdbcTemplate.class);
-    }
-
-//    public static JdbcTemplate getJdbcTemplate(){
-//        var context = new AnnotationConfigApplicationContext(JdbcConfiguration.class);
-//        return context.getBean(JdbcTemplate.class);
+//    public JdbcTemplate getJdbcTemplate(){
+//         var context = new ClassPathXmlApplicationContext("com/StarkIndustries/SpringJDBCModuleMark1/Configurations/JdbcConfiguration.xml");
+//         return context.getBean(JdbcTemplate.class);
 //    }
+
 
     @Override
     public int insertQuery(Customer customer){
@@ -62,7 +58,7 @@ public class DataAcessObject implements EntityDao {
 
     @Override
     public Customer getCustomerDetail(int customerId) {
-        Customer customer = this.getJdbcTemplate().queryForObject(Keys.SINGLE_SELECT_QUERY, new RowMapper<Customer>() {
+        Customer customer = this.jdbcTemplate.queryForObject(Keys.SINGLE_SELECT_QUERY, new RowMapper<Customer>() {
             @Override
             public Customer mapRow(ResultSet resultSet, int rowNum) throws SQLException {
                 Customer customer = new Customer();
@@ -84,7 +80,7 @@ public class DataAcessObject implements EntityDao {
     @Override
     public List<Customer> getAllCustomers() {
         List<Customer> list = new ArrayList<Customer>();
-        list=this.getJdbcTemplate().query(Keys.SELECT_QUERY,new SingleRowMapper());
+        list=this.jdbcTemplate.query(Keys.SELECT_QUERY,new SingleRowMapper());
         return list;
     }
 
