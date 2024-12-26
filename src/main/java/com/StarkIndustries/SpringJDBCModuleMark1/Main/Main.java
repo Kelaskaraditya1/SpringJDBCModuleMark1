@@ -6,20 +6,44 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.List;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
-        DataAcessObject dataAcessObject = new DataAcessObject();
+        Scanner s = new Scanner(System.in);
+
+        var conetxt = new ClassPathXmlApplicationContext("com/StarkIndustries/SpringJDBCModuleMark1/Configurations/JdbcConfiguration.xml");
+        DataAcessObject dataAcessObject =(DataAcessObject) conetxt.getBean(DataAcessObject.class);
 
         // Insert Query:
-        var conetxt = new ClassPathXmlApplicationContext("com/StarkIndustries/SpringJDBCModuleMark1/Configurations/JdbcConfiguration.xml");
-        Customer customer = new Customer(30,"Aditya",22,"8591059220","Indian");
-        conetxt.getBean(DataAcessObject.class).insertEntity(customer);
-//        if(dataAcessObject.insertEntity(customer)==1)
-//            System.out.println("Customer Added Successfully");
-//        else
-//            System.out.println("Failed to Add Customer to Database");
 
+//        Customer customer = new Customer(29,"Saurav",22,"9845654565","Indian");
+//        dataAcessObject.insertQuery(customer);
+
+        // Update Query:
+
+//        Customer customer = new Customer(30,"Aditya",22,"8591059220","Indian");
+//        dataAcessObject.updateQuery(customer);
+
+        // Delete Query:
+
+//        System.out.println("Enter the CustomerId of the Customer to be deleted");
+//        int customerId=s.nextInt();
+//        dataAcessObject.deleteQuery(customerId);
+
+        // Single Customer Query:
+
+//        Customer customer = dataAcessObject.getCustomerDetail(30);
+//        System.out.println(customer);
+
+        // getting List of Customers.
+
+        List<Customer> list = dataAcessObject.getAllCustomers();
+        list.stream().forEach(value->{
+            System.out.println(value);;
+        });
 
 
 
